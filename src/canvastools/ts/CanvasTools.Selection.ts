@@ -1,8 +1,8 @@
-import CTBaseInterfaces = require("./Base/CanvasTools.Base.Interfaces");
+import * as CTBaseInterfaces from "./Base/CanvasTools.Base.Interfaces";
 import IBase = CTBaseInterfaces.CanvasTools.Base.Interfaces;
-import CTBaseRect = require("./Base/CanvasTools.Base.Rect");
+import * as CTBaseRect from "./Base/CanvasTools.Base.Rect";
 import Rect = CTBaseRect.CanvasTools.Base.Rect.Rect;
-import CTBasePoint = require("./Base/CanvasTools.Base.Point2D");
+import * as CTBasePoint from "./Base/CanvasTools.Base.Point2D";
 import Point2D = CTBasePoint.CanvasTools.Base.Point.Point2D;
 
 import * as Snap from "snapsvg";

@@ -1,4 +1,4 @@
-import base = require("./CanvasTools.Base.Interfaces");
+import * as base from "./CanvasTools.Base.Interfaces";
 import IBase = base.CanvasTools.Base.Interfaces;
 
 export namespace CanvasTools.Base.Rect {

@@ -1,19 +1,19 @@
 /// <reference types="snapsvg" />
 export * from "./Base/CanvasTools.Base.Interfaces";
-import IBase = require("./Base/CanvasTools.Base.Interfaces");
-import Point2D = require("./Base/CanvasTools.Base.Point2D");
-import Rect = require("./Base/CanvasTools.Base.Rect");
-import Tags = require("./Base/CanvasTools.Base.Tags");
+import * as IBase from "./Base/CanvasTools.Base.Interfaces";
+import * as Point2D from "./Base/CanvasTools.Base.Point2D";
+import * as Rect from "./Base/CanvasTools.Base.Rect";
+import * as Tags from "./Base/CanvasTools.Base.Tags";
 
-import SelectionTool = require("./CanvasTools.Selection");
-import FilterTool = require("./CanvasTools.Filter");
-import ToolbarTools = require("./CanvasTools.Toolbar");
+import * as SelectionTool from "./CanvasTools.Selection";
+import * as FilterTool from "./CanvasTools.Filter";
+import * as ToolbarTools from "./CanvasTools.Toolbar";
 
-import RegionTools = require("./Regions/CanvasTools.Regions.RegionsManager");
-import PointRegion = require("./Regions/CanvasTools.Regions.PointRegion");
-import RectRegion = require("./Regions/CanvasTools.Regions.RectRegion");
+import * as RegionTools from "./Regions/CanvasTools.Regions.RegionsManager";
+import * as PointRegion from "./Regions/CanvasTools.Regions.PointRegion";
+import * as RectRegion from "./Regions/CanvasTools.Regions.RectRegion";
 
-import EditorTools = require("./CanvasTools.Editor");
+import * as EditorTools from "./CanvasTools.Editor";
 
 export module CanvasTools {
     export const Base = {
