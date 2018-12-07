@@ -8,41 +8,21 @@
 
 <body>
     <div id="ctZone">
-        <div id="toolbarzone">
-            <svg id="toolbarSVG">
-                <defs>
-                    <filter id="black-glow">
-                        <feGaussianBlur in="SourceAlpha" stdDeviation="2" />
+        <svg id="svgHost">
+            <defs>
+                <filter id="black-glow">
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="2" />
                         <feOffset dx="0" dy="0" result="offsetblur" />
                         <feComponentTransfer>
-                            <feFuncA type="linear" slope="0.8" />
-                        </feComponentTransfer>
-                        <feMerge>
-                            <feMergeNode />
-                            <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                    </filter>
-                </defs>
-            </svg>
-        </div>
-        <div id="selectionzone">
-            <svg id="selectionSVG">
-                <defs>
-                    <filter id="black-glow">
-                        <feGaussianBlur in="SourceAlpha" stdDeviation="2" />
-                        <feOffset dx="0" dy="0" result="offsetblur" />
-                        <feComponentTransfer>
-                            <feFuncA type="linear" slope="0.8" />
-                        </feComponentTransfer>
-                        <feMerge>
-                            <feMergeNode />
-                            <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                    </filter>
-                </defs>
-            </svg>
-            <canvas id="sourceImageCnvs"></canvas>
-        </div>
+                        <feFuncA type="linear" slope="0.8" />
+                    </feComponentTransfer>
+                    <feMerge>
+                        <feMergeNode />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+            </defs>
+        </svg>
     </div>
 
     <div>Some text <input type="text" /></div>
@@ -51,39 +31,35 @@
 <script>
     document.addEventListener("DOMContentLoaded", (e) => {
         var ct = CanvasTools.CanvasTools;
-        var sz = document.getElementById("selectionSVG");
-        var tz = document.getElementById("toolbarSVG");
+        let svgHost = document.getElementById("svgHost");
 
-        var editor = new ct.Editor(sz);
-        editor.addToolbar(tz, ct.Editor.FullToolbarSet, "./images/icons/");
+        let selector = new ct.Selection.AreaSelector(svgHost,
+            function onselectionBegin() {
+                // no arguments, just notification
+            },
+            function onselectionEnd(x1, y1, x2, y2) {
+                // console.log("Selection: " + x1 + ": " + y1 + "; " + x2 + ": " + y2);
+                // build new tag (titles + color hue value)
+                var primaryTag = new ct.Base.Tags.Tag(
+                    (Math.random() > 0.5) ? "Awesome" : "Brilliante!",
+                    Math.floor(Math.random() * 360.0));
+                var secondaryTag = new ct.Base.Tags.Tag(
+                    (Math.random() > 0.5) ? "Yes" : "No",
+                    Math.floor(Math.random() * 360.0));
+                var ternaryTag = new ct.Base.Tags.Tag(
+                    (Math.random() > 0.5) ? "one" : "two",
+                    Math.floor(Math.random() * 360.0));
+                var tags = new ct.Base.Tags.TagsDescriptor(primaryTag, [secondaryTag, ternaryTag]);
+                // create region using regionsmanager
+                rm.addRegion((regionId++).toString(), { x: x1, y: y1 }, { x: x2, y: y2 }, tags);
+            });
 
-        var incrementalRegionID = 100;
-
-        editor.onSelectionEnd = (commit) => {
-            let r = commit.boundRect;
-
-            let primaryTag = new ct.Base.Tags.Tag(
-                        (Math.random() > 0.5) ? "Awesome" : "Brilliante!",
-                        Math.floor(Math.random() * 360.0));
-            let secondaryTag = new ct.Base.Tags.Tag(
-                        (Math.random() > 0.5) ? "Yes" : "No",
-                        Math.floor(Math.random() * 360.0));
-            let ternaryTag = new ct.Base.Tags.Tag(
-                        (Math.random() > 0.5) ? "one" : "two",
-                        Math.floor(Math.random() * 360.0));
-            let tags = new ct.Base.Tags.TagsDescriptor(primaryTag, [secondaryTag, ternaryTag]);
-
-            if (commit.meta !== undefined && commit.meta.point !== undefined) {
-                let point = commit.meta.point;
-                editor.RM.addPointRegion((incrementalRegionID++).toString(), new ct.Base.Point.Point2D(point.x, point.y), tags);
-            } else {
-                editor.RM.addRectRegion((incrementalRegionID++).toString(), new ct.Base.Point.Point2D(r.x1, r.y1), new ct.Base.Point.Point2D(r.x2, r.y2), tags);
-            }
-        }
-        
-        editor.onRegionMove = (id, x, y, width, height) => {
-            console.log(`Moved ${id}: {${x}, ${y}} x {${width}, ${height}}`);
-        }
+        rm.onManipulationEnd = function () {
+            selector.enable();
+        };
+        rm.onManipulationBegin = function () {
+        selector.disable();
+    };
 
         // Upload background image for selection 
         let imageCnvs = document.getElementById("sourceImageCnvs");

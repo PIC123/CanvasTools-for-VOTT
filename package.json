@@ -3,15 +3,20 @@
   "version": "2.0.0",
   "description": "",
   "scripts": {
+    "build": "tsc",
     "test": "webpack --config webpack.test.js",
     "lib": "webpack --config webpack.lib.js"
   },
+  "main": "lib/js/ct.min.js",
+  "types": "lib/js/CanvasTools.d.ts",
   "author": "Konstantin Kichinsky",
   "license": "MIT",
   "dependencies": {
+    "constants": "0.0.2",
     "imports-loader": "^0.8.0",
     "snapsvg": "^0.5.1",
-    "tsconfig-paths-webpack-plugin": "^3.2.0"
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "@types/snapsvg": "^0.4.32",
