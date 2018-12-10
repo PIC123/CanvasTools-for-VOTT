@@ -7,7 +7,7 @@
     "test": "webpack --config webpack.test.js",
     "lib": "webpack --config webpack.lib.js"
   },
-  "main": "lib/js/ct.min.js",
+  "main": "test/js/ct.js",
   "types": "lib/js/CanvasTools.d.ts",
   "author": "Konstantin Kichinsky",
   "license": "MIT",
