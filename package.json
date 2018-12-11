@@ -5,7 +5,8 @@
   "scripts": {
     "build": "tsc",
     "test": "webpack --config webpack.test.js",
-    "lib": "webpack --config webpack.lib.js & webpack --config webpack.lib.min.js"
+    "lib": "webpack --config webpack.lib.js & webpack --config webpack.lib.min.js",
+    "typings": "tsc --project tsconfig.declarations.json"
   },
   "main": "test/js/ct.js",
   "types": "lib/js/CanvasTools.d.ts",
