@@ -8,8 +8,8 @@
     "lib": "webpack --config webpack.lib.js & webpack --config webpack.lib.min.js",
     "typings": "tsc --project tsconfig.declarations.json"
   },
-  "main": "test/js/ct.js",
-  "types": "lib/js/CanvasTools.d.ts",
+  "main": "lib/js/ct.amd.js",
+  "types": "lib/js/ct.amd.d.ts",
   "author": "Konstantin Kichinsky",
   "license": "MIT",
   "dependencies": {
