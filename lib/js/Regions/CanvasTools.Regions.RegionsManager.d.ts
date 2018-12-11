@@ -1,0 +1,66 @@
+import * as CTBaseInterfaces from "../Base/CanvasTools.Base.Interfaces";
+import IBase = CTBaseInterfaces.CanvasTools.Base.Interfaces;
+import * as CTBaseTag from "../Base/CanvasTools.Base.Tags";
+import Tags = CTBaseTag.CanvasTools.Base.Tags;
+import * as CTRegion from "./CanvasTools.Regions.Base";
+import RegionBase = CTRegion.CanvasTools.Region.RegionBase;
+export declare module CanvasTools.Region {
+    class RegionsManager {
+        private baseParent;
+        private paper;
+        private paperRect;
+        private regions;
+        private menuLayer;
+        private menu;
+        onManipulationBegin: RegionBase.ManipulationFunction;
+        onManipulationEnd: RegionBase.ManipulationFunction;
+        onRegionSelected: Function;
+        onRegionMove: Function;
+        onRegionDelete: Function;
+        private regionManagerLayer;
+        private __isFrozen;
+        readonly isFrozen: boolean;
+        private frozenNuance;
+        private tagsUpdateOptions;
+        constructor(svgHost: SVGSVGElement, onManipulationBegin: RegionBase.ManipulationFunction, onManipulationEnd: RegionBase.ManipulationFunction);
+        private buildOn;
+        private subscribeToEvents;
+        addRectRegion(id: string, pointA: IBase.IPoint2D, pointB: IBase.IPoint2D, tagsDescriptor: Tags.TagsDescriptor): void;
+        addPointRegion(id: string, point: IBase.IPoint2D, tagsDescriptor: Tags.TagsDescriptor): void;
+        drawRegion(x: number, y: number, rect: IBase.IRect, id: string, tagsDescriptor: Tags.TagsDescriptor): void;
+        redrawAllRegions(): void;
+        private sortRegionsByArea;
+        private lookupRegionByID;
+        private lookupSelectedRegions;
+        getSelectedRegionsBounds(): {
+            id: string;
+            x: number;
+            y: number;
+            width: number;
+            height: number;
+        }[];
+        private deleteRegion;
+        private deleteSelectedRegions;
+        deleteRegionById(id: string): void;
+        deleteAllRegions(): void;
+        updateTagsById(id: string, tagsDescriptor: Tags.TagsDescriptor): void;
+        updateTagsForSelectedRegions(tagsDescriptor: Tags.TagsDescriptor): void;
+        private selectRegion;
+        private selectAllRegions;
+        selectRegionById(id: string): void;
+        private selectNextRegion;
+        private reshapeRegion;
+        private moveSelectedRegions;
+        private resizeSelectedRegions;
+        resize(width: number, height: number): void;
+        private onManipulationBegin_local;
+        private onManipulationEnd_local;
+        private justManipulated;
+        private onRegionUpdate;
+        private unselectRegions;
+        private toggleBackground;
+        freeze(nuance?: string): void;
+        unfreeze(): void;
+        toggleFreezeMode(): void;
+    }
+}
