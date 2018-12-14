@@ -2,8 +2,8 @@
   "name": "vott-ct",
   "version": "2.0.10",
   "description": "CanvasTools editor for the VoTT project",
-  "main": "./dist/ct.js",
-  "types": "./lib/ct.d.ts",
+  "main": "./lib/CanvasTools.js",
+  "types": "./lib/CanvasTools.d.ts",
   "scripts": {
     "webpack-test": "webpack --config webpack.test.js",
     "webpack-lib": "webpack --config webpack.lib.js && webpack --config webpack.lib.min.js",

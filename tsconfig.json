@@ -3,7 +3,7 @@
         "target": "es2015",
         "module": "commonjs",
 
-        "declaration": false,
+        "declaration": true,
         "removeComments": true,
         "preserveConstEnums": true,
 
@@ -14,7 +14,7 @@
         "baseUrl": "src",
         "paths": {
         },
-        "outDir": "dist"
+        "outDir": "lib"
     },
     "include": [     
         "src/canvastools/ts/*.ts"
